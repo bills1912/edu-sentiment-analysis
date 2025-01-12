@@ -112,7 +112,7 @@ def app():
             # time.sleep(3.5)
             st.success("Done!")
             
-            sentiment_df = pd.read_csv("../edu_sentiment_analys_dash/assets/edu_sentiment.csv")
+            sentiment_df = pd.read_csv("https://raw.githubusercontent.com/bills1912/edu-sentiment-analysis/refs/heads/main/edu_sentiment_analys_dash/assets/edu_sentiment.csv")
             
             all_words = ' '.join([sent for sent in sentiment_df['data_text']])
             sent_wordcloud = WordCloud(
