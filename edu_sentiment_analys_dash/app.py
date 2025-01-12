@@ -6,7 +6,7 @@ from apps import (
 )
 st.set_page_config(
         page_title="Analisis Sentimen tentang Pendidikan di Indonesia",
-        page_icon=":ship:",
+        page_icon=":speech_balloon:",
         layout="wide"
     )
 
