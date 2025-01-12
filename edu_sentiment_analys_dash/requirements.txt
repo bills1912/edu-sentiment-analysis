@@ -1,5 +1,6 @@
-Sastrawi
 nltk
 pandas
+tweepy
 seaborn
 textblob
+Sastrawi

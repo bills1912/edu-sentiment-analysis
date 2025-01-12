@@ -43,10 +43,10 @@ def convert_eng(tweet):
     return translation
 
 def plot_wordcloud(wordcloud):
-    plt.figure(figsize=(10, 8))
+    fig = plt.figure(figsize=(5, 3))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
-    plt.show()
+    st.pyplot(fig, use_container_width=False)
 
 def app():
     st.write("# Selamat Datang di Dashboard Analisis Sentimen Dinas Pendidikan Kota Gunungsitoli")
@@ -176,9 +176,11 @@ def app():
                 total += 1
             sentiment_df['naive_bayes_cl'] = status_nb
             fig = plt.figure(figsize=(5, 3))
-            st.write(f"#### Analisis Sentimen dari Postingan yang Bersumber dari X dengan kata kunci '{query}'")
+            st.write(f"#### Analisis Sentimen dari Postingan yang Bersumber dari X dengan kata kunci 'kualitas pendidikan'")
+            plt.xlabel('Analisis Sentimen')
+            plt.ylabel('Jumlah Postingan')
             sns.countplot(data=sentiment_df, x=sentiment_df['naive_bayes_cl'], hue='naive_bayes_cl')
-            st.pyplot(fig)
+            st.pyplot(fig, use_container_width=False)
             
             
     
