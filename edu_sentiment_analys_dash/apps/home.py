@@ -107,75 +107,79 @@ def app():
             sent_df['blob'] = status
             sent_df.to_csv(f"{query}.csv", index=False)
             # Autentikasi
-        if st.button("Analys Sentiment of Tweet"):
-            with st.spinner("Analys..."):
-                # time.sleep(3.5)
-                st.success("Done!")
-                
-                sentiment_df = pd.read_csv(f"{query}.csv")
-                
-                all_words = ' '.join([sent for sent in sentiment_df['data_text']])
-                sent_wordcloud = WordCloud(
-                    width=3000,
-                    height=2000,
-                    random_state=3,
-                    background_color='black',
-                    colormap='Blues_r',
-                    collocations=False,
-                    stopwords=STOPWORDS
-                ).generate(all_words)
-                
-                plot_wordcloud(sent_wordcloud)
-                
-                dataset = sentiment_df.drop(['data_text'], axis=1, inplace=False)
-                dataset = [tuple(x) for x in dataset.to_records(index=False)]
-                
-                set_positif = []
-                set_negatif = []
-                set_netral = []
+    if st.button("Analys Sentiment of Tweet"):
+        with st.spinner("Analys..."):
+            # time.sleep(3.5)
+            st.success("Done!")
+            
+            sentiment_df = pd.read_csv("../edu_sentiment_analys_dash/assets/edu_sentiment.csv")
+            
+            all_words = ' '.join([sent for sent in sentiment_df['data_text']])
+            sent_wordcloud = WordCloud(
+                width=3000,
+                height=2000,
+                random_state=3,
+                background_color='black',
+                colormap='Blues_r',
+                collocations=False,
+                stopwords=STOPWORDS
+            ).generate(all_words)
+            
+            plot_wordcloud(sent_wordcloud)
+            
+            dataset = sentiment_df.drop(['data_text', 'naive_bayes_cl'], axis=1, inplace=False)
+            dataset = [tuple(x) for x in dataset.to_records(index=False)]
+            
+            set_positif = []
+            set_negatif = []
+            set_netral = []
 
-                for n in dataset:
-                    if(n[1] == 'Positive'):
-                        set_positif.append(n)
-                    elif(n[1] == 'Negative'):
-                        set_negatif.append(n)
-                    else:
-                        set_netral.append(n)
+            for n in dataset:
+                if(n[1] == 'Positive'):
+                    set_positif.append(n)
+                elif(n[1] == 'Negative'):
+                    set_negatif.append(n)
+                else:
+                    set_netral.append(n)
 
-                set_positif = random.sample(set_positif, k=int(len(set_positif)/2))
-                set_negatif = random.sample(set_negatif, k=int(len(set_negatif)/2))
-                set_netral = random.sample(set_netral, k=int(len(set_netral)/2))
+            set_positif = random.sample(set_positif, k=int(len(set_positif)/2))
+            set_negatif = random.sample(set_negatif, k=int(len(set_negatif)/2))
+            set_netral = random.sample(set_netral, k=int(len(set_netral)/2))
 
-                train = set_positif + set_negatif + set_netral
+            train = set_positif + set_negatif + set_netral
 
-                train_set = []
+            train_set = []
 
-                for n in train:
-                    train_set.append(n)
+            for n in train:
+                train_set.append(n)
+            
+            cl = NaiveBayesClassifier(train_set)
+            
+            polarization = 0
+
+            status_nb = []
+            positive_tot = negative_tot = netral_tot = total = 0
+
+            for text in list(sentiment_df['eng_data']):
+                analysis = TextBlob(text, classifier=cl)
+                polarization += analysis.polarity
                 
-                cl = NaiveBayesClassifier(train_set)
-                
-                polarization = 0
-
-                status_nb = []
-                positive_tot = negative_tot = netral_tot = total = 0
-
-                for text in data_sent:
-                    analysis = TextBlob(text, classifier=cl)
-                    polarization += analysis.polarity
-                    
-                    if analysis.sentiment.polarity > 0.0:
-                        positive_tot += 1
-                        status_nb.append('Positive')
-                    elif analysis.sentiment.polarity == 0.0:
-                        netral_tot += 1
-                        status_nb.append('Netral')
-                    else:
-                        negative_tot += 1
-                        status_nb.append('Negative')
-                    total += 1
-                sentiment_df['naive_bayes_cl'] = status_nb
-                st.bar_chart(data=sentiment_df, x=sentiment_df['naive_bayes_cl'], color='naive_bayes_cl')
+                if analysis.sentiment.polarity > 0.0:
+                    positive_tot += 1
+                    status_nb.append('Positive')
+                elif analysis.sentiment.polarity == 0.0:
+                    netral_tot += 1
+                    status_nb.append('Netral')
+                else:
+                    negative_tot += 1
+                    status_nb.append('Negative')
+                total += 1
+            sentiment_df['naive_bayes_cl'] = status_nb
+            fig = plt.figure(figsize=(5, 3))
+            st.write(f"#### Analisis Sentimen dari Postingan yang Bersumber dari X dengan kata kunci '{query}'")
+            sns.countplot(data=sentiment_df, x=sentiment_df['naive_bayes_cl'], hue='naive_bayes_cl')
+            st.pyplot(fig)
+            
             
     
     
