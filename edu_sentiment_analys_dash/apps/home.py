@@ -69,12 +69,12 @@ def app():
                                 access_token_secret=access_token_secret)
     
     query = st.text_input("Kueri yang Dicari", placeholder="Masukkan kueri yang akan diextract dari X")
-    num_of_tweet = st.number_input("Banyak Tweet yang Ingin Diambil", min_value=0, max_value=100, placholder="Masukkan banyaknya tweet yang ingin dianalisis")
+    num_of_tweet = st.number_input("Banyak Tweet yang Ingin Diambil", min_value=0, max_value=100, placeholder="Masukkan banyaknya tweet yang ingin dianalisis")
     
     if st.button("Crawl Data"):
         with st.spinner("Crawling..."):
             time.sleep(3.5)
-            result = client.search_recent_tweets(query)
+            result = client.search_recent_tweets(query, max_results=num_of_tweet)
             st.success("Done!")
             sentiment_data_all = result.data
             final_data = []
