@@ -4,3 +4,4 @@ tweepy
 seaborn
 textblob
 Sastrawi
+translate
