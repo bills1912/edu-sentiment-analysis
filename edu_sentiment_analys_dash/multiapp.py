@@ -59,7 +59,7 @@ class MultiApp:
         st.sidebar.title("About")
         st.sidebar.info(
             """
-            This dashboard is maintain by *Bill Van Ricardo Zalukhu*, and this dashboard is deployed using [Streamlit Deploy Service](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app), 
+            This dashboard is maintain by **Bill Van Ricardo Zalukhu**, and this dashboard is deployed using [Streamlit Deploy Service](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app), 
             so check another project from me [here](https://github.com/bills1912?tab=repositories).
             """  
         )
