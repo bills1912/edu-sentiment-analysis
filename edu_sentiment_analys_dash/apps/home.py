@@ -75,7 +75,6 @@ def app():
         with st.spinner("Crawling..."):
             time.sleep(3.5)
             result = client.search_recent_tweets(query, max_results=num_of_tweet)
-            st.success("Done!")
             sentiment_data_all = result.data
             final_data = []
             sent_df = pd.DataFrame()
@@ -105,12 +104,12 @@ def app():
             
             sent_df['eng_data'] = data_sent
             sent_df['blob'] = status
-            sent_df.to_csv(f"{query}.csv", index=False)
+            sent_df.to_csv(f"../assets/{query}.csv", index=False)
+        st.success("Done!")
             # Autentikasi
     if st.button("Analys Sentiment of Tweet"):
         with st.spinner("Analys..."):
             # time.sleep(3.5)
-            st.success("Done!")
             
             sentiment_df = pd.read_csv("https://raw.githubusercontent.com/bills1912/edu-sentiment-analysis/refs/heads/main/edu_sentiment_analys_dash/assets/edu_sentiment.csv")
             
@@ -181,6 +180,7 @@ def app():
             plt.ylabel('Jumlah Postingan')
             sns.countplot(data=sentiment_df, x=sentiment_df['naive_bayes_cl'], hue='naive_bayes_cl')
             st.pyplot(fig, use_container_width=False)
+        st.success("Done!")
             
             
     
