@@ -68,7 +68,8 @@ def app():
     client = tweepy.Client(bearer_token=bearer, consumer_key=consumer_key, consumer_secret=consumer_secret, access_token=access_token, 
                                 access_token_secret=access_token_secret)
     
-    query = st.text_input("Kueri yang Dicari", placeholder="Masukkan kueri yang akan diextract dari X")
+    query = st.text_input("Kueri yang Dicari", placeholder="Masukkan kueri yang akan diextract dari X", help="Kueri yang dimasukkan dapat disesuaikan dengan\
+                          kebutuhan postingan yang akan dikumpulkan dan dianalisis")
     num_of_tweet = st.number_input("Banyak Tweet yang Ingin Diambil", min_value=0, max_value=100, placeholder="Masukkan banyaknya tweet yang ingin dianalisis")
     
     if st.button("Crawl Data"):
