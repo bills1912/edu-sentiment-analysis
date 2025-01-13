@@ -59,7 +59,7 @@ class MultiApp:
         st.sidebar.title("About")
         st.sidebar.info(
             """
-            This [dashboard](https://bills1912-vessels-detection-dashboard-app-7dx4a2.streamlit.app/) is maintain by Bill Van Ricardo Zalukhu.
-            And this dashboard is connected to [Big Data STIS](https://bigdata.stis.ac.id/ship-detection/), so check another project from Big Data STIS [here](https://bigdata.stis.ac.id).
+            This dashboard is maintain by Bill Van Ricardo Zalukhu, and this dashboard is deployed using [Streamlit Deploy Service](https://bigdata.stis.ac.id/ship-detection/), 
+            so check another project from me [here](https://github.com/bills1912?tab=repositories).
             """  
         )
