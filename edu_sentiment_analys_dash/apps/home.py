@@ -181,6 +181,8 @@ def app():
             plt.ylabel('Jumlah Postingan')
             sns.countplot(data=sentiment_df, x=sentiment_df['naive_bayes_cl'], hue='naive_bayes_cl')
             st.pyplot(fig, use_container_width=False)
+            dict_sentiment = {"Positive":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Positive'])}
+            st.write(dict_sentiment.keys())
         st.success("Done!")
             
             
