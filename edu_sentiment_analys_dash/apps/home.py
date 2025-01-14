@@ -186,6 +186,15 @@ def app():
                               "Netral":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Netral']['data_text'])}
             for sent_key in dict_sentiment.keys():
                 with st.expander(f"{sent_key}"):
+                    hide = """
+                        <style>
+                        ul.streamlit-expander {
+                            overflow: scroll;
+                            width: 1500px;
+                        </style>
+                        """
+
+                    st.markdown(hide, unsafe_allow_html=True)
                     for sent_tweet in dict_sentiment[sent_key]:
                         st.write(sent_tweet)
         st.success("Done!")
