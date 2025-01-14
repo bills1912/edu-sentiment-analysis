@@ -59,11 +59,11 @@ def app():
 
         """
         )
-    bearer = "AAAAAAAAAAAAAAAAAAAAAK7DWgEAAAAAi7d0%2FnUXa55nietE%2BPkTa%2BGABHU%3DZDewMVcDnvjd0A01ZUWSYg9fhZlsiSLKN2XcX5RJ6C1bB1cZGn"
-    consumer_key = "a6qFeda7ma8e2kA0drlgpJqNJ"
-    consumer_secret = "ixrUzR5mbvj6ZbkvWAvhJid8uXNjRge40b6rWlqdcwMl4e3HTo" 
-    access_token = "1468548120808398850-Ka8T3Kg1GhRDTWvMa09Evq713lR2sF"
-    access_token_secret = "7U7XyOLrxRMugWvh3okIacE5fiCSaUFPOJBmz5tLzCwJc"
+    bearer = "AAAAAAAAAAAAAAAAAAAAAMt3yAEAAAAAMhT0SZJs4Cwv4F0VNYbq4W2Rvr8%3DwkAUmMOjUEOTfF84fEU2hsseAG23F1bE9o6SjLJdRSzxxt8kPv"
+    consumer_key = "uhoJGUqvATvKmDiMSLH9KOKxP"
+    consumer_secret = "xDnTmvLwwcSXwAlfxZJx1modVgSkDeAQE8eLJgY0hAofcZsb6I" 
+    access_token = "1878638103059124224-EevL32wK37ast89DLRXXSMeXmQpmE1"
+    access_token_secret = "DUHFmzG6Kq7B1opRIx3h4eWJqSqgSbeslpQ0kSyka91Qq"
     
     client = tweepy.Client(bearer_token=bearer, consumer_key=consumer_key, consumer_secret=consumer_secret, access_token=access_token, 
                                 access_token_secret=access_token_secret)
