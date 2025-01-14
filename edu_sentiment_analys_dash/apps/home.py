@@ -185,18 +185,28 @@ def app():
                               "Negative":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Negative']['data_text']),
                               "Netral":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Netral']['data_text'])}
             for sent_key in dict_sentiment.keys():
-                with st.expander(f"{sent_key}"):
-                    hide = """
-                        <style>
-                        ul.streamlit-expander {
-                            overflow: scroll;
-                            width: 1500px;
-                        </style>
-                        """
+                with st.expander(f"{sent_key} Sentiment Tweets"):
+                    # hide = """
+                    #     <style>
+                    #     ul.streamlit-expander {
+                    #         overflow: scroll;
+                    #         width: 1500px;
+                    #     </style>
+                    #     """
 
-                    st.markdown(hide, unsafe_allow_html=True)
+                    # st.markdown(hide, unsafe_allow_html=True)
                     for sent_tweet in dict_sentiment[sent_key]:
                         st.write(sent_tweet)
+                css='''
+                <style>
+                    [data-testid="stExpander"] div:has(>.streamlit-expanderContent) {
+                        overflow: scroll;
+                        height: 400px;
+                    }
+                </style>
+                '''
+
+                st.markdown(css, unsafe_allow_html=True)
         st.success("Done!")
             
             
