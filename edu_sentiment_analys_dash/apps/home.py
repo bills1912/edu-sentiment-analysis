@@ -181,8 +181,13 @@ def app():
             plt.ylabel('Jumlah Postingan')
             sns.countplot(data=sentiment_df, x=sentiment_df['naive_bayes_cl'], hue='naive_bayes_cl')
             st.pyplot(fig, use_container_width=False)
-            dict_sentiment = {"Positive":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Positive'])}
-            st.write(dict_sentiment.keys())
+            dict_sentiment = {"Positive":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Positive']), 
+                              "Negative":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Negative']),
+                              "Netral":list(sentiment_df[sentiment_df['naive_bayes_cl']=='Netral'])}
+            for sent_key in dict_sentiment.keys():
+                with st.expander(f"{sent_key}"):
+                    for sent_tweet in dict_sentiment[sent_key]:
+                        st.write(sent_tweet)
         st.success("Done!")
             
             
