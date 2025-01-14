@@ -187,7 +187,7 @@ def app():
             for sent_key in dict_sentiment.keys():
                 with st.expander(f"{sent_key} Sentiment Tweets"):
                     for sent_tweet in dict_sentiment[sent_key]:
-                        st.write(sent_tweet)
+                        st.write(f"- {sent_tweet}")
             css='''
             <style>
                 [data-testid="stExpander"] div:has(>.streamlit-expanderContent) {
